@@ -1,0 +1,35 @@
+<form class="example-form" *ngIf="stage===1">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Что надо сделать?" [(ngModel)]="firstAnswer" name="first">
+  </mat-form-field>
+  <button mat-button (click)="addAnswer()">Далее</button> 
+   <p>Зачем надо {{firstAnswer}}?</p> 
+</form>
+<form class="example-form" *ngIf="stage===2">
+  <mat-form-field class="example-full-width">
+    <input 
+    matInput
+    [(ngModel)]="whyAnswer" 
+    name="second" 
+    placeholder="Зачем надо {{answers[answers.length-1]}} ?">
+  </mat-form-field>
+  <button mat-button (click)="addWhyAnswer()" matTooltip="Если {{whyAnswer}} - действие то жмем" matTooltipPosition="right">Далее</button>
+  <button mat-button (click)= 'nextPart()' matTooltip="Если {{whyAnswer}} - желаемое состояние, эмоция, или чувство то жмем" matTooltipPosition="right" >Стоп</button>  
+</form>
+
+<form class="example-form" *ngIf="stage===3">
+  <mat-form-field class="example-full-width">
+    <input 
+    matInput
+    [(ngModel)]="emotionalAnswer" 
+    name="third" 
+    placeholder="{{rightQuestions[questionCount]}} {{lastAnswer}} ?">
+  </mat-form-field>
+  <button mat-button (click)="nextQuestion()">Далее</button>  
+</form>
+
+
+<div *ngIf="stage===4">
+  <p >tas ir beigas</p>
+  <button mat-button (click)="toStart()">Начать заново</button>
+</div>
